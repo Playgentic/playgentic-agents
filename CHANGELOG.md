@@ -8,6 +8,18 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ## [Unreleased]
 
+### Added
+
+- **Project conventions and extensions.** The pipeline reads optional, repo-owned files under `.playgentic/wiki/`, so team rules survive plugin updates:
+  - `CONVENTIONS.md`: the team's coding style and testing expectations. It's authoritative over the skill and agent defaults, and is passed to every agent.
+  - `index.md`: a step and page-object index, used instead of grepping when present.
+  - `extensions/<name>.md`: per-skill and per-agent rules (`author-tests`, `explorer`, `builder`, `auditor`). The orchestrator follows its own file and appends each agent's file to that agent's prompt. Extension rules override built-in instructions where they conflict, including the guardrails.
+
+### Changed
+
+- **Step 6 auto-reject list** now defers to `CONVENTIONS.md` and extensions when they explicitly allow something.
+- **Hand-off** runs the repo's documented wiki or index command, and never edits `CONVENTIONS.md` or `extensions/`.
+
 ## [0.1.0] - 2026-10-11
 
 First release. The core agent pipeline from [playgentic](https://github.com/BlaiseMoses01/playgentic) is ported as a plugin for Claude Code, GitHub Copilot and Codex. It is minimal, and it makes no assumptions about the repo it runs in.

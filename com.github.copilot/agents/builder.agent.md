@@ -60,3 +60,7 @@ Report:
 - any app bugs or blockers
 
 Call `browser_close` if you opened a browser.
+
+## Project rules take precedence
+
+Your prompt may include the repo's `CONVENTIONS.md` and a final `## Project extensions` section. Both come from the team and **override these instructions where they conflict**, including the rules above. If a project rule allows something these instructions forbid, follow the project rule and mention it in your report.

@@ -22,6 +22,20 @@ Modes:
 - `--gen` (default): add coverage for new or untested behaviour.
 - `--heal`: repair broken or flaky tests. The acceptance criteria are what the broken test used to verify, and those must still be verified afterwards. Deleting or weakening an assertion is not a fix.
 
+### Project wiki and extensions
+
+A repo can customise this pipeline in `.playgentic/wiki/`. All of it is optional; use whatever exists:
+
+- `CONVENTIONS.md`: the team's coding style and testing expectations (locators, page objects, steps, test data, what good UI and API tests look like). It's **authoritative**: where it disagrees with this skill, the agent briefs, or what you infer from the code, it wins.
+- `index.md`: a generated index of the suite's steps and page objects. Use it instead of grepping when it exists.
+- `extensions/<name>.md`: extra rules for one skill or agent:
+  - `author-tests.md` applies to **you**.
+  - `explorer.md`, `builder.md` and `auditor.md` apply to those agents.
+
+  Extension rules **override built-in instructions where they conflict, including the guardrails** (e.g. an extension may allow `waitForTimeout` in a specific case).
+
+Read `extensions/author-tests.md` now, if it exists, and follow it for the rest of the run. When you delegate to an agent, append the contents of its extension file to the prompt under a final heading, `## Project extensions (override everything above)`. Skip the heading if the file is missing or has no rules. Treat HTML comments as empty.
+
 ## Step 1: Establish your working environment
 
 ### Read config
@@ -90,21 +104,21 @@ Copy or point at env files the same way if the suite needs them (e.g. `.env`). P
 
 ## Step 2: Learn the suite
 
-Do not assume a layout or conventions. Read, in this order:
+Do not assume a layout or conventions. If `.playgentic/wiki/` exists, start there: read `CONVENTIONS.md` and `index.md`, then confirm against the code. Otherwise read, in this order:
 
 1. The Playwright config (`playwright.config.{ts,js,mjs}`). Note `testDir`, projects, `baseURL` and where it comes from (which env var), and whether it uses `defineBddConfig`/`defineBddProject`, which means playwright-bdd.
 2. `package.json`: the test scripts and whether `playwright-bdd` is a dependency.
 3. Three to five existing tests close to the area you'll work in. For bdd, read the feature files plus their step definitions.
 4. Shared fixtures, page objects and helpers.
 
-Write down a short **conventions brief** (keep it in context; you'll paste it into every agent prompt):
+Write down a short **conventions brief** (keep it in context; you'll paste it into every agent prompt). If `CONVENTIONS.md` exists, include its relevant sections verbatim rather than paraphrasing them:
 
 - Suite type: plain or bdd, plus the feature and step locations.
 - File naming and where new tests or steps belong.
 - Locator style: role/label/testid vs CSS, and any page-object layer.
 - Fixtures, auth/setup patterns, and how test data is created.
 - Tagging conventions already in use.
-- Step documentation: do existing steps carry JSDoc/docstrings? If most do, new ones must too, in the same format. If they don't, don't introduce them. Never require a docs wiki or a generated report.
+- Step documentation: do existing steps carry JSDoc/docstrings? If most do, new ones must too, in the same format. If they don't, don't introduce them. Never require a docs wiki or a generated report unless `CONVENTIONS.md` says so.
 - How to run one test: `runCommand` plus `--grep "<tag or title>"`, plus `--project` if needed.
 
 For bdd suites, list the existing step patterns (grep the step files for `Given(`/`When(`/`Then(`/`Step(`). The builder must reuse existing steps before writing new ones.
@@ -159,7 +173,7 @@ Launch one `auditor` agent with:
 
 If the auditor returns `BLOCK`, or any AC comes back `weak` or `not-verified`, send the specific findings back to the relevant builder. Run at most 2 review loops. After that, stop and report the remaining gaps honestly.
 
-Reject immediately, without waiting for the auditor, any diff that:
+Unless `CONVENTIONS.md` or an extension explicitly allows it, reject immediately, without waiting for the auditor, any diff that:
 
 - adds `.skip`, `.only` or `@skip`
 - deletes or loosens an existing assertion without the user agreeing to it
@@ -168,12 +182,13 @@ Reject immediately, without waiting for the auditor, any diff that:
 
 ## Step 7: Hand off
 
-1. Make sure only test-related files changed (tests, steps, features, fixtures, page objects). Revert anything else unless the user asked for it.
-2. Commit with a clear message, e.g. `test(<area>): cover <behaviour> (AC-1..n)`.
-3. Report to the user:
+1. If the repo documents a command that regenerates its wiki or index (e.g. `npm run wiki` in `CONVENTIONS.md`), run it so the index reflects the new steps and page objects.
+2. Make sure only test-related files changed: tests, steps, features, fixtures, page objects, and generated wiki or index files. Never edit `CONVENTIONS.md` or `extensions/`; they belong to the team. Revert anything else unless the user asked for it.
+3. Commit with a clear message, e.g. `test(<area>): cover <behaviour> (AC-1..n)`.
+4. Report to the user:
    - the branch, and the worktree path if there is one
    - an AC table with columns AC, test (file:line), result and auditor verdict
    - any app bugs found and any blockers
-4. If a worktree was used, offer to remove it (`git worktree remove <path>`). Never remove it without asking. The branch stays either way.
+5. If a worktree was used, offer to remove it (`git worktree remove <path>`). Never remove it without asking. The branch stays either way.
 
 Do not push or open a PR unless the user asks.

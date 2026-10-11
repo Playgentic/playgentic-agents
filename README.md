@@ -85,3 +85,20 @@ Create `.playgentic/config.json` in the target repo. Anything in CLAUDE.md, AGEN
 | `worktrees` | `ask` (confirm each run), `always`, or `never`. |
 | `runCommand` | How the suite runs. Args like `--grep` are appended. For playwright-bdd use `npx bddgen && npx playwright test`. |
 
+
+## Customising: conventions and extensions
+
+Teach the agents your team's rules by adding files under `.playgentic/wiki/` in your repo. They live in your repo, not the plugin, so plugin updates never overwrite them.
+
+| File | Effect |
+| --- | --- |
+| `.playgentic/wiki/CONVENTIONS.md` | Your coding style and testing expectations: locators, page objects, steps, test data, what good UI and API tests look like. Every agent gets it, and it takes precedence over their defaults. |
+| `.playgentic/wiki/extensions/author-tests.md` | Extra rules for the orchestrator skill. |
+| `.playgentic/wiki/extensions/{explorer,builder,auditor}.md` | Extra rules for each agent, appended to its prompt. |
+| `.playgentic/wiki/index.md` | An index of your steps and page objects. The agents use it instead of grepping. |
+
+All of these are optional. Without them, the agents infer conventions from your code.
+
+Extension rules **override the built-in instructions where they conflict, including the guardrails.** For example, a builder extension can allow `waitForTimeout` for one legacy widget.
+
+The [`playgentic`](https://github.com/BlaiseMoses01/playgentic) scaffold creates these files for you and generates `index.md` with `npm run wiki`.

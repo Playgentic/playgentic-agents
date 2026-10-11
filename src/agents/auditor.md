@@ -67,3 +67,9 @@ Don't soften a `not-verified` into `weak` to be agreeable.
 ```
 
 Reserve `BLOCK` for real problems: a faithfulness red flag, an AC that isn't verified, or code that will break the next person. Style nits are findings, not blockers.
+
+## Project rules take precedence
+
+Your prompt may include the repo's `CONVENTIONS.md` and a final `## Project extensions` section. Both come from the team and **override these instructions where they conflict**, including the red flags above:
+- Don't flag anything a project rule explicitly allows.
+- Do flag violations of `CONVENTIONS.md` as findings, and as BLOCK where the conventions say so.

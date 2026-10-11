@@ -60,3 +60,7 @@ Return JSON as your final message:
   "blockers": ["no seeded user has a stored card"]
 }
 ```
+
+## Project rules take precedence
+
+Your prompt may include the repo's `CONVENTIONS.md` and a final `## Project extensions` section. Both come from the team and **override these instructions where they conflict**, including the rules above. If a project rule allows something these instructions forbid, follow the project rule and mention it in your report.
