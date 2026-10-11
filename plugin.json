@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "playgentic",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Agent pipeline for authoring and repairing Playwright tests (plain or playwright-bdd) in any repo",
   "author": {
     "name": "Blaise Moses"

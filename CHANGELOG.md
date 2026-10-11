@@ -8,6 +8,8 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-11
+
 ### Changed
 
 - **Bundled MCP server is now the generic [Playwright MCP](https://github.com/microsoft/playwright-mcp)** (`npx @playwright/mcp@latest`, server name `playwright`) instead of `playwright-test` (`npx playwright run-test-mcp-server`). Claude tool names are now `mcp__plugin_playgentic_playwright__*`. The builder runs tests with the brief's run command instead of `test_debug`, and the explorer derives locators from the snapshot instead of `browser_generate_locator`.
@@ -55,6 +57,7 @@ First release. The core agent pipeline from [playgentic](https://github.com/play
   - `worktrees` (`ask` / `always` / `never`)
   - `runCommand`
 
-[Unreleased]: https://github.com/playgentic/playgentic-agents/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/playgentic/playgentic-agents/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/playgentic/playgentic-agents/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/playgentic/playgentic-agents/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/playgentic/playgentic-agents/releases/tag/v0.1.0

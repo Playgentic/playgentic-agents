@@ -1,7 +1,7 @@
 {
   "name": "playgentic",
   "description": "Agent pipeline for authoring and repairing Playwright tests (plain or playwright-bdd) in any repo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Blaise Moses"
   },
