@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The release workflow runs these same checks before publishing.
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up Node
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 20
+
+      - name: JSON files parse
+        run: |
+          for f in config.json .mcp.json mcp.json plugin.json .claude-plugin/*.json .codex-plugin/*.json .github/plugin/*.json .agents/plugins/*.json; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" && echo "ok $f"
+          done
+
+      - name: Generated agents are up to date
+        run: |
+          node scripts/build.mjs
+          git diff --exit-code -- agents com.github.copilot skills || { echo "::error::run node scripts/build.mjs and commit the output"; exit 1; }
+
+      - name: Versions agree across manifests
+        run: |
+          node -e '
+            const r = (f) => require("./" + f);
+            const vs = {
+              claude: r(".claude-plugin/plugin.json").version,
+              portable: r("plugin.json").version,
+              codex: r(".codex-plugin/plugin.json").version,
+              copilotMarket: r(".github/plugin/marketplace.json").plugins[0].version,
+            };
+            if (new Set(Object.values(vs)).size !== 1) { console.error("::error::version mismatch", vs); process.exit(1); }
+            console.log("version", vs.claude);
+          '
+
+      - name: Plugin manifest and marketplace validate
+        run: |
+          npx -y @anthropic-ai/claude-code plugin validate .
+          npx -y @anthropic-ai/claude-code plugin validate .claude-plugin/marketplace.json
+
+      # Plugin MCP tools are namespaced; an unprefixed name silently matches nothing.
+      - name: Agent tool names are plugin-prefixed
+        run: |
+          if grep -n 'mcp__playwright-test__' agents/*.md; then
+            echo "::error::use mcp__plugin_playgentic_playwright-test__<tool> in agent tools lists"
+            exit 1
+          fi
+
+      - name: Version has a changelog entry
+        run: |
+          v=$(node -p "require('./.claude-plugin/plugin.json').version")
+          grep -q "^## \[$v\]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no entry for $v"; exit 1; }

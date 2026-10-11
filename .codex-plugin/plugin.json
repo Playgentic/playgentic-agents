@@ -1,0 +1,6 @@
+{
+  "name": "playgentic",
+  "version": "0.1.0",
+  "description": "Agent pipeline for authoring and repairing Playwright tests (plain or playwright-bdd) in any repo",
+  "skills": "./skills/"
+}

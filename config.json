@@ -1,0 +1,6 @@
+{
+  "preferredBaseBranch": "main",
+  "branchPrefix": "test/",
+  "worktrees": "ask",
+  "runCommand": "npx playwright test"
+}

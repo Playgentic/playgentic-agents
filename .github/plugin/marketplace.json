@@ -1,0 +1,8 @@
+{
+  "name": "playgentic",
+  "owner": { "name": "Blaise Moses" },
+  "metadata": { "description": "Agent tooling for Playwright test automation", "version": "0.1.0" },
+  "plugins": [
+    { "name": "playgentic", "description": "Agent pipeline for authoring and repairing Playwright tests (plain or playwright-bdd) in any repo", "version": "0.1.0", "source": "./" }
+  ]
+}
