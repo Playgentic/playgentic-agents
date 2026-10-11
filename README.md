@@ -20,8 +20,11 @@ It doesn't impose a layout. It learns your suite's conventions first and writes 
 **Claude Code**
 
 ```
-/plugin install playgentic --marketplace playgentic/playgentic-agents
+/plugin marketplace add playgentic/playgentic-agents
+/plugin install playgentic@playgentic
 ```
+
+In a repo wired by `npx playgentic agents claude`, the marketplace is already registered: accept the install prompt when you trust the folder, or run `claude plugin install playgentic@playgentic --scope project`.
 
 **GitHub Copilot CLI**
 

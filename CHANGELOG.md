@@ -12,6 +12,10 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 - The repo moved to the [playgentic GitHub org](https://github.com/playgentic). Install from `playgentic/playgentic-agents`; the old `BlaiseMoses01/playgentic-agents` path redirects.
 
+### Fixed
+
+- **The Claude Code install command in the README** used a `--marketplace` flag that Claude Code doesn't have. It's now `/plugin marketplace add playgentic/playgentic-agents` then `/plugin install playgentic@playgentic`.
+
 ## [0.2.0] - 2026-10-11
 
 ### Added
