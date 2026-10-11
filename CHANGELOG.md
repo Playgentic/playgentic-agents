@@ -8,6 +8,8 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-11
+
 ### Added
 
 - **Project conventions and extensions.** The pipeline reads optional, repo-owned files under `.playgentic/wiki/`, so team rules survive plugin updates:
@@ -44,5 +46,6 @@ First release. The core agent pipeline from [playgentic](https://github.com/Blai
   - `worktrees` (`ask` / `always` / `never`)
   - `runCommand`
 
-[Unreleased]: https://github.com/BlaiseMoses01/playgentic-agents/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/BlaiseMoses01/playgentic-agents/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/BlaiseMoses01/playgentic-agents/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/BlaiseMoses01/playgentic-agents/releases/tag/v0.1.0
