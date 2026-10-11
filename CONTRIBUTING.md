@@ -9,7 +9,7 @@ Each harness looks for plugin agents in a different place and format, and Codex 
 | Location | Edit it? | Why it exists |
 | --- | --- | --- |
 | `src/agents/*.md` | **yes, the only copy you edit** | Neutral frontmatter plus the prompt body. It doesn't belong to any harness. |
-| `agents/*.md` | no, generated | Claude Code only reads plugin agents from here. Carries Claude's `tools:` list, including the namespaced `mcp__plugin_playgentic_playwright-test__*` names. That list is what enforces read-only and limits browser access. |
+| `agents/*.md` | no, generated | Claude Code only reads plugin agents from here. Carries Claude's `tools:` list, including the namespaced `mcp__plugin_playgentic_playwright__*` names. That list is what enforces read-only and limits browser access. |
 | `com.github.copilot/agents/*.agent.md` | no, generated | Copilot's required folder and extension for plugin agents. It has no `tools:` list, because Copilot's tool aliases aren't stable across surfaces yet, so read-only is stated in the prompt instead. |
 | `skills/author-tests/agents/*.md` | no, generated | Codex plugins can't include agents. On Codex (or any harness without the named agents), the skill starts a generic subagent and gives it this file as its instructions. |
 
@@ -28,7 +28,7 @@ Source frontmatter:
 name: explorer
 description: one line, used by harnesses to pick the agent
 access: read            # read | write. The generator refuses `edit` for read agents
-tools: [read, search, browser]   # read, search, edit, shell, browser, test
+tools: [read, search, browser]   # read, search, edit, shell, browser
 model: sonnet           # Claude only
 color: green            # Claude only
 ```
@@ -75,7 +75,7 @@ For more opinionated features and functionality , we tend to throw those in our 
 ```bash
 node scripts/build.mjs && git diff --exit-code
 claude plugin validate . && claude plugin validate .claude-plugin/marketplace.json
-claude --plugin-dir . -p "List tools containing 'playwright-test' and agents/skills containing playgentic"
+claude --plugin-dir . -p "List tools containing 'plugin_playgentic_playwright' and agents/skills containing playgentic"
 
 # Codex, isolated from your real config
 CODEX_HOME=$(mktemp -d) sh -c 'codex plugin marketplace add "$PWD" && codex plugin add playgentic@playgentic'

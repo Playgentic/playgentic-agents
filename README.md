@@ -13,14 +13,14 @@ It doesn't impose a layout. It learns your suite's conventions first and writes 
 | `explorer` agent | Explores the live app read-only and returns locators, flows and the observable proof ("oracle") for each acceptance criterion. |
 | `builder` agent | Writes and runs the tests for its assigned criteria in your repo's style, iterating until they pass or it can say exactly why not. |
 | `auditor` agent | Read-only adversarial review. Rates whether each test genuinely verifies its criterion and flags weakened or low-quality tests. |
-| `playwright-test` MCP | Playwright's test MCP server (`npx playwright run-test-mcp-server`), used by the explorer and builder. |
+| `playwright` MCP | The generic [Playwright MCP](https://github.com/microsoft/playwright-mcp) server (`npx @playwright/mcp@latest`), used by the explorer and builder to drive the browser. Tests run through your own run command. |
 
 ## Install
 
 **Claude Code**
 
 ```
-/plugin marketplace add playgentic/playgentic-agents
+/plugin marketplace add https://github.com/playgentic/playgentic-agents
 /plugin install playgentic@playgentic
 ```
 
@@ -29,21 +29,22 @@ In a repo wired by `npx playgentic agents claude`, the marketplace is already re
 **GitHub Copilot CLI**
 
 ```bash
-copilot plugin marketplace add playgentic/playgentic-agents
+copilot plugin marketplace add https://github.com/playgentic/playgentic-agents
 copilot plugin install playgentic@playgentic
 ```
 
 **Codex**
 
 ```bash
-codex plugin marketplace add playgentic/playgentic-agents
+codex plugin marketplace add https://github.com/playgentic/playgentic-agents
 codex plugin add playgentic@playgentic
 ```
 
 Codex plugins can't ship custom agents. On Codex, the skill spawns generic subagents using the briefs in `skills/author-tests/agents/`.
 
 **Requirements in the target repo:**
-- `@playwright/test` installed (the MCP server runs from the repo's own Playwright)
+- `@playwright/test` installed
+- Node.js, so `npx @playwright/mcp@latest` can run (it uses Chrome by default; run `npx playwright install chrome` if it isn't installed)
 - a reachable app under test
 - git
 

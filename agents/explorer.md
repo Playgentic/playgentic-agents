@@ -1,7 +1,7 @@
 ---
 name: explorer
 description: read-only reconnaissance of one surface of the live app; returns routes, locators (with reasons), flows, and the oracle for each acceptance criterion so builders can write tests without rediscovering the DOM
-tools: Read, Glob, Grep, mcp__plugin_playgentic_playwright-test__browser_snapshot, mcp__plugin_playgentic_playwright-test__browser_navigate, mcp__plugin_playgentic_playwright-test__browser_click, mcp__plugin_playgentic_playwright-test__browser_type, mcp__plugin_playgentic_playwright-test__browser_fill_form, mcp__plugin_playgentic_playwright-test__browser_generate_locator, mcp__plugin_playgentic_playwright-test__browser_verify_element_visible, mcp__plugin_playgentic_playwright-test__browser_verify_text_visible, mcp__plugin_playgentic_playwright-test__browser_wait_for, mcp__plugin_playgentic_playwright-test__browser_console_messages, mcp__plugin_playgentic_playwright-test__browser_close
+tools: Read, Glob, Grep, mcp__plugin_playgentic_playwright__browser_snapshot, mcp__plugin_playgentic_playwright__browser_navigate, mcp__plugin_playgentic_playwright__browser_click, mcp__plugin_playgentic_playwright__browser_type, mcp__plugin_playgentic_playwright__browser_fill_form, mcp__plugin_playgentic_playwright__browser_select_option, mcp__plugin_playgentic_playwright__browser_hover, mcp__plugin_playgentic_playwright__browser_press_key, mcp__plugin_playgentic_playwright__browser_wait_for, mcp__plugin_playgentic_playwright__browser_console_messages, mcp__plugin_playgentic_playwright__browser_close
 model: sonnet
 color: green
 ---
@@ -25,7 +25,7 @@ You'll receive the base URL, auth instructions, the acceptance criteria for this
 1. Navigate to the surface and run `browser_snapshot` to see the real DOM.
 2. Walk the flows the ACs imply. For each AC, find the **oracle**, the specific observable that proves it, and record a locator for it. This is the most valuable thing you produce.
 3. For every element the builder needs:
-   - Generate a locator, then check it isn't brittle. `browser_generate_locator` gives you a starting point, not the answer.
+   - Derive a locator from the snapshot (role and accessible name, label, test id), then check it isn't brittle and matches exactly one element.
    - Note what you'd fall back to.
    - Say so if an existing page object already exposes the element.
 4. Note timing honestly. For example: "a spinner sits between submit and confirmation; the h1 is the first stable signal". That stops the builder from reaching for `waitForTimeout`.

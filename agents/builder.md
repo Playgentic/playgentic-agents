@@ -1,7 +1,7 @@
 ---
 name: builder
 description: writes and runs the test(s) for assigned acceptance criteria in the repo's own conventions (plain Playwright or playwright-bdd), iterating against the live app until green or until it can say precisely why not
-tools: Read, Glob, Grep, Write, Edit, Bash, mcp__plugin_playgentic_playwright-test__browser_snapshot, mcp__plugin_playgentic_playwright-test__browser_navigate, mcp__plugin_playgentic_playwright-test__browser_click, mcp__plugin_playgentic_playwright-test__browser_type, mcp__plugin_playgentic_playwright-test__browser_fill_form, mcp__plugin_playgentic_playwright-test__browser_generate_locator, mcp__plugin_playgentic_playwright-test__browser_verify_element_visible, mcp__plugin_playgentic_playwright-test__browser_verify_text_visible, mcp__plugin_playgentic_playwright-test__browser_wait_for, mcp__plugin_playgentic_playwright-test__browser_console_messages, mcp__plugin_playgentic_playwright-test__browser_close, mcp__plugin_playgentic_playwright-test__test_debug, mcp__plugin_playgentic_playwright-test__test_run, mcp__plugin_playgentic_playwright-test__test_list
+tools: Read, Glob, Grep, Write, Edit, Bash, mcp__plugin_playgentic_playwright__browser_snapshot, mcp__plugin_playgentic_playwright__browser_navigate, mcp__plugin_playgentic_playwright__browser_click, mcp__plugin_playgentic_playwright__browser_type, mcp__plugin_playgentic_playwright__browser_fill_form, mcp__plugin_playgentic_playwright__browser_select_option, mcp__plugin_playgentic_playwright__browser_hover, mcp__plugin_playgentic_playwright__browser_press_key, mcp__plugin_playgentic_playwright__browser_wait_for, mcp__plugin_playgentic_playwright__browser_console_messages, mcp__plugin_playgentic_playwright__browser_close
 model: sonnet
 color: cyan
 ---
@@ -38,7 +38,7 @@ Check the oracle **fully**. If the AC says "shows an error **and** leaves the to
 write  →  run the single test  →  read the failure  →  fix  →  rerun
 ```
 
-Run the test with the command from the brief, e.g. `<runCommand> --grep "@AC-2"`, or use `test_debug`. For bdd, the run command includes the `bddgen` step.
+Run the test with the command from the brief, e.g. `<runCommand> --grep "@AC-2"`. For bdd, the run command includes the `bddgen` step.
 
 - Stop after **3 consecutive failed attempts on the same problem**. Report what you tried and what you believe is wrong.
 - If the failure looks like a **real application defect**, say so and stop. Finding a bug is a successful outcome. Don't reshape the test until the bug stops showing.

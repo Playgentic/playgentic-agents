@@ -10,11 +10,12 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ### Changed
 
-- The repo moved to the [playgentic GitHub org](https://github.com/playgentic). Install from `playgentic/playgentic-agents`; the old `BlaiseMoses01/playgentic-agents` path redirects.
+- **Bundled MCP server is now the generic [Playwright MCP](https://github.com/microsoft/playwright-mcp)** (`npx @playwright/mcp@latest`, server name `playwright`) instead of `playwright-test` (`npx playwright run-test-mcp-server`). Claude tool names are now `mcp__plugin_playgentic_playwright__*`. The builder runs tests with the brief's run command instead of `test_debug`, and the explorer derives locators from the snapshot instead of `browser_generate_locator`.
+- The repo moved to the [playgentic GitHub org](https://github.com/playgentic). Install from `https://github.com/playgentic/playgentic-agents`; the old `BlaiseMoses01/playgentic-agents` path redirects.
 
 ### Fixed
 
-- **The Claude Code install command in the README** used a `--marketplace` flag that Claude Code doesn't have. It's now `/plugin marketplace add playgentic/playgentic-agents` then `/plugin install playgentic@playgentic`.
+- **The Claude Code install command in the README** used a `--marketplace` flag that Claude Code doesn't have. It's now `/plugin marketplace add https://github.com/playgentic/playgentic-agents` then `/plugin install playgentic@playgentic`.
 
 ## [0.2.0] - 2026-10-11
 

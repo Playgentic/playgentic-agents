@@ -54,8 +54,8 @@ jobs:
       # Plugin MCP tools are namespaced; an unprefixed name silently matches nothing.
       - name: Agent tool names are plugin-prefixed
         run: |
-          if grep -n 'mcp__playwright-test__' agents/*.md; then
-            echo "::error::use mcp__plugin_playgentic_playwright-test__<tool> in agent tools lists"
+          if grep -n 'mcp__playwright__' agents/*.md; then
+            echo "::error::use mcp__plugin_playgentic_playwright__<tool> in agent tools lists"
             exit 1
           fi
 

@@ -34,7 +34,7 @@ Check the oracle **fully**. If the AC says "shows an error **and** leaves the to
 write  →  run the single test  →  read the failure  →  fix  →  rerun
 ```
 
-Run the test with the command from the brief, e.g. `<runCommand> --grep "@AC-2"`, or use `test_debug`. For bdd, the run command includes the `bddgen` step.
+Run the test with the command from the brief, e.g. `<runCommand> --grep "@AC-2"`. For bdd, the run command includes the `bddgen` step.
 
 - Stop after **3 consecutive failed attempts on the same problem**. Report what you tried and what you believe is wrong.
 - If the failure looks like a **real application defect**, say so and stop. Finding a bug is a successful outcome. Don't reshape the test until the bug stops showing.

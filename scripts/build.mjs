@@ -19,14 +19,14 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "src", "agents");
 const PLUGIN = JSON.parse(readFileSync(join(ROOT, ".claude-plugin", "plugin.json"), "utf8")).name;
-const MCP_SERVER = "playwright-test";
+// The generic Playwright MCP (@playwright/mcp). Tests run through the shell, not MCP.
+const MCP_SERVER = "playwright";
 
 const BROWSER_TOOLS = [
   "browser_snapshot", "browser_navigate", "browser_click", "browser_type", "browser_fill_form",
-  "browser_generate_locator", "browser_verify_element_visible", "browser_verify_text_visible",
+  "browser_select_option", "browser_hover", "browser_press_key",
   "browser_wait_for", "browser_console_messages", "browser_close",
 ];
-const TEST_TOOLS = ["test_debug", "test_run", "test_list"];
 
 // Claude namespaces plugin MCP tools as mcp__plugin_<plugin>_<server>__<tool>.
 const claudeMcp = (t) => `mcp__plugin_${PLUGIN}_${MCP_SERVER}__${t}`;
@@ -35,7 +35,6 @@ const CLAUDE_TOOLS = {
   search: ["Glob", "Grep"],
   edit: ["Write", "Edit"],
   shell: ["Bash"],
-  test: TEST_TOOLS.map(claudeMcp),
   browser: BROWSER_TOOLS.map(claudeMcp),
 };
 
