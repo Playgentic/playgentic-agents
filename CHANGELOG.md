@@ -8,6 +8,10 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ## [Unreleased]
 
+### Changed
+
+- The repo moved to the [playgentic GitHub org](https://github.com/playgentic). Install from `playgentic/playgentic-agents`; the old `BlaiseMoses01/playgentic-agents` path redirects.
+
 ## [0.2.0] - 2026-10-11
 
 ### Added
@@ -24,7 +28,7 @@ Bump `version` in every manifest (see CLAUDE.md) with every release entry.
 
 ## [0.1.0] - 2026-10-11
 
-First release. The core agent pipeline from [playgentic](https://github.com/BlaiseMoses01/playgentic) is ported as a plugin for Claude Code, GitHub Copilot and Codex. It is minimal, and it makes no assumptions about the repo it runs in.
+First release. The core agent pipeline from [playgentic](https://github.com/playgentic/playgentic) is ported as a plugin for Claude Code, GitHub Copilot and Codex. It is minimal, and it makes no assumptions about the repo it runs in.
 
 ### Added
 
@@ -46,6 +50,6 @@ First release. The core agent pipeline from [playgentic](https://github.com/Blai
   - `worktrees` (`ask` / `always` / `never`)
   - `runCommand`
 
-[Unreleased]: https://github.com/BlaiseMoses01/playgentic-agents/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/BlaiseMoses01/playgentic-agents/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/BlaiseMoses01/playgentic-agents/releases/tag/v0.1.0
+[Unreleased]: https://github.com/playgentic/playgentic-agents/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/playgentic/playgentic-agents/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/playgentic/playgentic-agents/releases/tag/v0.1.0

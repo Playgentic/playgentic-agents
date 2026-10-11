@@ -5,8 +5,8 @@
   "author": {
     "name": "Blaise Moses"
   },
-  "homepage": "https://github.com/BlaiseMoses01/playgentic-agents",
-  "repository": "https://github.com/BlaiseMoses01/playgentic-agents",
+  "homepage": "https://github.com/playgentic/playgentic-agents",
+  "repository": "https://github.com/playgentic/playgentic-agents",
   "license": "MIT",
   "keywords": [
     "playwright",

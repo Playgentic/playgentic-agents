@@ -68,7 +68,7 @@ Keep three lists consistent:
 
 This plugin is deliberately minimal and kept as generic as possilbe to preserve utility for users outside of our playgentic repo shape.
 
-For more opinionated features and functionality , we tend to throw those in our scaffold package in the [`playgentic`](https://github.com/BlaiseMoses01/playgentic) npm package.
+For more opinionated features and functionality , we tend to throw those in our scaffold package in the [`playgentic`](https://github.com/playgentic/playgentic) npm package.
 
 ## Verifying changes
 

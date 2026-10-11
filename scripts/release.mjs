@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const CHANGELOG = join(ROOT, "CHANGELOG.md");
-const REPO_URL = "https://github.com/BlaiseMoses01/playgentic-agents";
+const REPO_URL = "https://github.com/playgentic/playgentic-agents";
 
 // Every place the version lives. Keep in sync with the CI "Versions agree" check.
 const VERSION_FILES = [

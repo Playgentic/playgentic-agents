@@ -20,20 +20,20 @@ It doesn't impose a layout. It learns your suite's conventions first and writes 
 **Claude Code**
 
 ```
-/plugin install playgentic --marketplace BlaiseMoses01/playgentic-agents
+/plugin install playgentic --marketplace playgentic/playgentic-agents
 ```
 
 **GitHub Copilot CLI**
 
 ```bash
-copilot plugin marketplace add BlaiseMoses01/playgentic-agents
+copilot plugin marketplace add playgentic/playgentic-agents
 copilot plugin install playgentic@playgentic
 ```
 
 **Codex**
 
 ```bash
-codex plugin marketplace add BlaiseMoses01/playgentic-agents
+codex plugin marketplace add playgentic/playgentic-agents
 codex plugin add playgentic@playgentic
 ```
 
@@ -101,4 +101,4 @@ All of these are optional. Without them, the agents infer conventions from your 
 
 Extension rules **override the built-in instructions where they conflict, including the guardrails.** For example, a builder extension can allow `waitForTimeout` for one legacy widget.
 
-The [`playgentic`](https://github.com/BlaiseMoses01/playgentic) scaffold creates these files for you and generates `index.md` with `npm run wiki`.
+The [`playgentic`](https://github.com/playgentic/playgentic) scaffold creates these files for you and generates `index.md` with `npm run wiki`.
